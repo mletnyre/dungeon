@@ -6,7 +6,7 @@
 
 class Room{
     public:
-    Room(int y, int x): x_dim(x), y_dim(y), roomMap(y, std::vector<char>(x)){}
+    Room(int y, int x, int wx, int wy): x_dim(x), y_dim(y), world_x(wx), world_y(wy), roomMap(y, std::vector<char>(x)){}
 
     Room(){}
 
@@ -88,6 +88,7 @@ class Room{
     }
 
     std::vector<std::vector<char>> roomMap;
+    bool initialized = false;
     int idx;
     int world_x;
     int world_y;
