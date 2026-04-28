@@ -48,6 +48,7 @@ class Room{
 
     void drawRoom(){
         int i, j;
+        std::cout<<"Current World Coordinates ("<<this->world_x<<","<<this->world_y<<")\n";
         for(j = 0; j < y_dim; j++){
             for(i = 0; i < x_dim; i++){
                 std::cout<<this->getRoomMap(j, i);
@@ -71,8 +72,8 @@ class Room{
         int nDoor = (rand() % x_dim) + 1;
         int sDoor = (rand() % x_dim) + 1;
 
-        int wDoor = (random() % y_dim ) + 1;
-        int eDoor = (random() % y_dim ) + 1;
+        int wDoor = (rand() % y_dim ) + 1;
+        int eDoor = (rand() % y_dim ) + 1;
 
         setRoomMap(0, nDoor, '*');//set n Door
         setRoomMap(y_dim - 2, sDoor, '*');//set s Door

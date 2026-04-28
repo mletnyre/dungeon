@@ -2,9 +2,10 @@
 #include <vector>
 #include <cstdlib>
 
+//cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+
 #include "Game.h"
-#include "Room.h"
-#include <iostream> 
+#include "Room.h" 
 
 #define ROOM_HEIGHT 23
 #define ROOM_WIDTH  80
