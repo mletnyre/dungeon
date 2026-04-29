@@ -11,20 +11,46 @@
 class Game{
     public:
     Game(int x, int y, int rh, int rw): MAP_WIDTH(x), MAP_HEIGHT(y), ROOM_HEIGHT(rh), ROOM_WIDTH(rw), rooms(y, std::vector<std::optional<Room>>(x)){
-        player = ShowStartScreen();
+        //generate the room first so that the Player constructor can use its information
         Room* FirstRoom = new Room(ROOM_HEIGHT, ROOM_WIDTH, MAP_WIDTH/2, MAP_HEIGHT/2);
         FirstRoom->createRoom();
-        FirstRoom->drawRoom();
         CurRoom = FirstRoom;
+
+        player = new Player(CurRoom->getWorld_x(), CurRoom->getWorld_y(), CurRoom->getXDim() / 2, CurRoom->getYDim() / 2);
+        ShowStartScreen(); 
+    }
+    
+    void run(){
+        char inp;
+        while(this->isRunning){
+            renderScene();
+            std::cin>>inp;
+        }
+    }
+    private:
+    
+    void renderScene(){
+        //find the current room
+        //find player position
+        //display "hud" information
+        drawHud();
+        CurRoom->drawRoom();
+        player->drawPlayer(); 
     }
 
-    Player* ShowStartScreen(){
+    void drawHud(){
+        using std::cout;
+        cout<<"Player Name:" << player->getName() << " Player Level: " << player->getLevel();
+        cout<<" XP: "<<player->getXP() << " XP for next level: "<< player->getNextLevelXP()<<"\n";
+        cout<<"Current World Coordiantes ("<<CurRoom->getWorld_x()<<","<<CurRoom->getWorld_y()<<")\n";
+    }
+
+    void ShowStartScreen(){
         std::string name;
         std::cout<<"Welcome to dungeon game by Matthew Etnyre\n";
         std::cout<<"Please Enter a name for your hero\n";
         std::cin >> name;
-        Player* player = new Player(name);
-        return player;
+        player->setName(name);
     }
 
     void handleInput(char inp){
@@ -67,18 +93,17 @@ class Game{
             CurRoom = &room;
         }
     }
+    //do we even need setters and getters if the only public method is going to be run()??
+    // int getXDim(){ return this->MAP_WIDTH;}
+    
+    // int getYDim(){ return this->MAP_HEIGHT;}
+    
+    // void setXDim(int val){ this->MAP_WIDTH = val;}
+    
+    // void setYDim(int val){ this->MAP_HEIGHT = val;}
+    
+    // bool getRunning(){ return this->isRunning;}
 
-    int getXDim(){ return this->MAP_WIDTH;}
-
-    int getYDim(){ return this->MAP_HEIGHT;}
-
-    void setXDim(int val){ this->MAP_WIDTH = val;}
-
-    void setYDim(int val){ this->MAP_HEIGHT = val;}
-
-    bool getRunning(){ return this->isRunning;}
-
-    private:
     bool isRunning = true;
     int ROOM_HEIGHT;
     int ROOM_WIDTH;

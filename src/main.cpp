@@ -15,6 +15,6 @@
 int main(int argc, char* argv[]){
     std::cout<<"Starting Game.\n";
     Game *game = new Game(MAP_WIDTH, MAP_HEIGHT, ROOM_HEIGHT, ROOM_WIDTH);
-
+    game->run();
     return 0;
 }

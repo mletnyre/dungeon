@@ -48,7 +48,6 @@ class Room{
 
     void drawRoom(){
         int i, j;
-        std::cout<<"Current World Coordinates ("<<this->world_x<<","<<this->world_y<<")\n";
         for(j = 0; j < y_dim; j++){
             for(i = 0; i < x_dim; i++){
                 std::cout<<this->getRoomMap(j, i);
@@ -86,7 +85,7 @@ class Room{
 
     void carveRoom(){
         //some kind of minesweeper like algo?
-        
+
     }
 
     std::vector<std::vector<char>> roomMap;
