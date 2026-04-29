@@ -2,7 +2,7 @@
 #include <vector>
 #include <cstdlib>
 
-#include "Map.h"
+#include "Game.h"
 #include "Room.h"
 #include <iostream> 
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char* argv[]){
     std::cout<<"Starting Game.\n";
-    Map *map = new Map(MAP_WIDTH, MAP_HEIGHT, ROOM_HEIGHT, ROOM_WIDTH);
+    Game *game = new Game(MAP_WIDTH, MAP_HEIGHT, ROOM_HEIGHT, ROOM_WIDTH);
 
     return 0;
 }

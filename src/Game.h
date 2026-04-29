@@ -11,10 +11,20 @@
 class Game{
     public:
     Game(int x, int y, int rh, int rw): MAP_WIDTH(x), MAP_HEIGHT(y), ROOM_HEIGHT(rh), ROOM_WIDTH(rw), rooms(y, std::vector<std::optional<Room>>(x)){
+        player = ShowStartScreen();
         Room* FirstRoom = new Room(ROOM_HEIGHT, ROOM_WIDTH, MAP_WIDTH/2, MAP_HEIGHT/2);
         FirstRoom->createRoom();
         FirstRoom->drawRoom();
         CurRoom = FirstRoom;
+    }
+
+    Player* ShowStartScreen(){
+        std::string name;
+        std::cout<<"Welcome to dungeon game by Matthew Etnyre\n";
+        std::cout<<"Please Enter a name for your hero\n";
+        std::cin >> name;
+        Player* player = new Player(name);
+        return player;
     }
 
     void handleInput(char inp){

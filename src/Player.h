@@ -5,7 +5,8 @@
 
 class Player{
     public:
-    Player(){}
+    Player(std::string n):name(n){}
+    Player(std::string n, int wx, int wy, int rx, int ry):name(n), world_x(wx), world_y(wy), room_x(rx), room_y(ry){}
 
     private:
     int level;
