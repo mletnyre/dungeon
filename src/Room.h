@@ -3,12 +3,15 @@
 
 //only one of these on the screen at a time, go through doors to move between them. 
 #include <cstdlib>
+#include "Com.h"
 
 class Room{
     public:
     Room(int y, int x, int wx, int wy): x_dim(x), y_dim(y), world_x(wx), world_y(wy), roomMap(y, std::vector<char>(x)){}
 
     Room(){}
+
+    std::vector<Com> getComs(){return this->coms;}
 
     int getXDim(){ return this->x_dim;}
 
@@ -96,6 +99,7 @@ class Room{
     int x_dim;
     int y_dim;
     int nDoor, sDoor, eDoor, wDoor;
+    std::vector<Com> coms;
 };
 
 #endif

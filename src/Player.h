@@ -2,8 +2,9 @@
 #define PLAYER_H
 
 #include <string>
+#include "Character.h"
 
-class Player{
+class Player : public Character{
     public:
     Player(int wx, int wy, int rx, int ry)
         :world_x(wx), world_y(wy), room_x(rx), room_y(ry){

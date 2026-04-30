@@ -3,6 +3,8 @@
 
 #include "Room.h"
 #include "Player.h"
+#include "Character.h"
+#include "Com.h"
 #include <vector>
 #include <optional>
 
@@ -23,12 +25,27 @@ class Game{
     void run(){
         char inp;
         while(this->isRunning){
+            startPlayersTurn();
             renderScene();
-            std::cin>>inp;
+            moveComs();
+            renderScene();
         }
+
     }
     private:
     
+    void moveComs(){
+        std::vector<Com> coms = CurRoom->getComs();
+        for(Com c: coms){
+            //pick a random dir to move
+            checkFight(c);
+        }
+    }
+
+    void checkFight(Character c){
+
+    }
+
     void renderScene(){
         //find the current room
         //find player position
@@ -53,7 +70,9 @@ class Game{
         player->setName(name);
     }
 
-    void handleInput(char inp){
+    void startPlayersTurn(){
+        char inp;
+        std::cin>>inp;
         int world_x = CurRoom->getWorld_x();
         int world_y = CurRoom->getWorld_y();
         int newWorldX = world_y; 
