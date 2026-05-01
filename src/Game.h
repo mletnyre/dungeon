@@ -20,15 +20,13 @@ class Game{
 
         player = new Player(CurRoom->getWorld_x(), CurRoom->getWorld_y(), CurRoom->getXDim() / 2, CurRoom->getYDim() / 2);
         ShowStartScreen(); 
-        renderScene();
     }
     
     void run(){
         while(this->isRunning){
+            renderScene();
             startPlayersTurn();
-            renderScene();
             moveComs();
-            renderScene();
         }
 
     }
@@ -135,12 +133,10 @@ class Game{
         if(!rooms[newWorldY][newWorldX].has_value()){    
             newRoom = new Room(ROOM_HEIGHT, ROOM_WIDTH, newWorldX, newWorldY);
             newRoom->createRoom();
-            newRoom->drawRoom();
             CurRoom = newRoom;
         }
         else{
             Room room = rooms[newWorldY][newWorldX].value();
-            room.drawRoom();
             CurRoom = &room;
         }
     }
