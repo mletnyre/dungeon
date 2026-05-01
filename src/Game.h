@@ -18,18 +18,20 @@ class Game{
         FirstRoom->createRoom();
         CurRoom = FirstRoom;
 
-        player = new Player(CurRoom->getWorld_x(), CurRoom->getWorld_y(), CurRoom->getXDim() / 2, CurRoom->getYDim() / 2);
+        player = new Player(
+                CurRoom->getWorld_x(), CurRoom->getWorld_y(), 
+                CurRoom->getXDim() / 2, CurRoom->getYDim() / 2);
         ShowStartScreen(); 
     }
     
     void run(){
         while(this->isRunning){
             renderScene();
-            startPlayersTurn();
+            PlayerTurn();
             moveComs();
         }
-
     }
+
     private:
     
     void moveComs(){
@@ -88,7 +90,7 @@ class Game{
         player->setName(name);
     }
 
-    void startPlayersTurn(){
+    void PlayerTurn(){
         char inp;
         std::cin>>inp;
         int world_x = CurRoom->getWorld_x();

@@ -11,7 +11,7 @@
 #define MAP_HEIGHT 100
 #define MAP_WIDTH  100
 
-
+    
 int main(int argc, char* argv[]){
     std::cout<<"Starting Game.\n";
     Game *game = new Game(MAP_WIDTH, MAP_HEIGHT, ROOM_HEIGHT, ROOM_WIDTH);
