@@ -58,8 +58,8 @@ class Room{
         for(int i = 0; i < comCount; i ++){
             bool valid = false;
             while(!valid){
-                ranX = (rand() % x_dim - 2) + 1;
-                ranY = (rand() % y_dim - 2) + 1;
+                ranX = i + 5;
+                ranY = i + 7;
                 if(validSpot(ranX, ranY)){
                     valid = true;
                 }
