@@ -11,6 +11,10 @@ class Com : public Character{
     const Character* operator->() const {
         return this;
     }
+
+    void print() const {
+        std::cout<< "Com: " << name << " Location (x,y):"<<"("<<room_x<<","<<room_y<<")\n";
+    }
 };
 
 #endif

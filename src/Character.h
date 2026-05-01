@@ -9,7 +9,6 @@ class Character{
          level(l), xp(x), nextLevelXP(nxp), symbol(c){
         }
     
-
     void levelUp(){
         level++;
         nextLevelXP *= 1.05;
@@ -34,7 +33,7 @@ class Character{
     void setSymbol(char c){symbol = c;}
 
 
-    private:
+    protected:
     char symbol;
     std::string name;
     int level;

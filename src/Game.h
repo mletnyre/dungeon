@@ -133,6 +133,13 @@ class Game{
         else if(inp == 'd'){
             player->setRoom_x(player->getRoom_x() + 1); 
         }
+        else if(inp == 'm'){
+            //used to help debug, prints out the list of coms and their locations
+            std::vector<Com> comList = CurRoom->getComs();
+            for(const Com& c: comList){
+                c.print();
+            }
+        }
         else{
             std::cout<<"Im not sure what to do with this input: \n" << inp;
         }
