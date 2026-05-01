@@ -139,6 +139,7 @@ class Game{
             for(const Com& c: comList){
                 c.print();
             }
+            PlayerTurn(); //this might be bad but I think it will fix the problem for now.
         }
         else{
             std::cout<<"Im not sure what to do with this input: \n" << inp;
