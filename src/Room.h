@@ -51,19 +51,20 @@ class Room{
     }
 
     void generateComs(){
+        //adds comCount number of coms to the coms vector. ensures that they are not overlapping
         //for now each room will have 5 coms in it
         int comCount = CalculateComCount();
         int ranY, ranX;
         for(int i = 0; i < comCount; i ++){
             bool valid = false;
             while(!valid){
-                ranX = (rand() % x_dim -1) + 1;
-                ranY = (rand() % y_dim -1) + 1;
+                ranX = (rand() % x_dim - 2) + 1;
+                ranY = (rand() % y_dim - 2) + 1;
                 if(validSpot(ranX, ranY)){
                     valid = true;
                 }
             }
-            Com* c = new Com(getWorld_x(), getWorld_y(), ranY, ranX);
+            Com* c = new Com(getWorld_x(), getWorld_y(), ranX, ranY);
             coms.push_back(*c);
         }
     }

@@ -64,7 +64,6 @@ class Game{
                     if(x == i && y == j){
                         std::cout<<c->getSymbol();
                         comRender = true;
-                        continue;
                     }
                 }
                 if(player->getRoom_x() == i && player->getRoom_y() == j){
