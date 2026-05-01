@@ -8,8 +8,6 @@
 #include <vector>
 #include <optional>
 
-//this is the grid of the rooms 
-
 class Game{
     public:
     Game(int x, int y, int rh, int rw): MAP_WIDTH(x), MAP_HEIGHT(y), ROOM_HEIGHT(rh), ROOM_WIDTH(rw), rooms(y, std::vector<std::optional<Room>>(x)){
@@ -31,6 +29,11 @@ class Game{
             moveComs();
         }
     }
+
+
+
+
+
 
     private:
     
@@ -98,8 +101,8 @@ class Game{
         std::cin>>inp;
         int world_x = CurRoom->getWorld_x();
         int world_y = CurRoom->getWorld_y();
-        int newWorldX = world_y; 
-        int newWorldY = world_x;
+        int newWorldX = world_x; 
+        int newWorldY = world_y;
         Room* newRoom;
         if(inp == 'j'){
             //move left one room
@@ -143,7 +146,9 @@ class Game{
         else{
             std::cout<<"Im not sure what to do with this input: \n" << inp;
         }
-        if(!rooms[newWorldY][newWorldX].has_value()){    
+
+
+        if(!(rooms[newWorldY][newWorldX].has_value())){    
             newRoom = new Room(ROOM_HEIGHT, ROOM_WIDTH, newWorldX, newWorldY);
             newRoom->createRoom();
             CurRoom = newRoom;
@@ -153,16 +158,6 @@ class Game{
             CurRoom = &room;
         }
     }
-    //do we even need setters and getters if the only public method is going to be run()??
-    // int getXDim(){ return this->MAP_WIDTH;}
-    
-    // int getYDim(){ return this->MAP_HEIGHT;}
-    
-    // void setXDim(int val){ this->MAP_WIDTH = val;}
-    
-    // void setYDim(int val){ this->MAP_HEIGHT = val;}
-    
-    // bool getRunning(){ return this->isRunning;}
 
     bool isRunning = true;
     int ROOM_HEIGHT;
