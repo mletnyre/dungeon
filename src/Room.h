@@ -52,12 +52,33 @@ class Room{
 
     void generateComs(){
         //for now each room will have 5 coms in it
-        for(int i = 0; i < 5; i ++){
-            int ranY = i+5;
-            int ranX = i+5; //hardcoded for now
+        int comCount = CalculateComCount();
+        int ranY, ranX;
+        for(int i = 0; i < comCount; i ++){
+            bool valid = false;
+            while(!valid){
+                ranX = (rand() % x_dim -1) + 1;
+                ranY = (rand() % y_dim -1) + 1;
+                if(validSpot(ranX, ranY)){
+                    valid = true;
+                }
+            }
             Com* c = new Com(getWorld_x(), getWorld_y(), ranY, ranX);
             coms.push_back(*c);
         }
+    }
+
+    bool validSpot(int ranX, int ranY){
+        const char* RoomChars = "_";
+        char square = roomMap[ranY][ranX];
+        if(strchr(RoomChars, square)){
+            return true; 
+        }
+        return false;
+    }
+
+    int CalculateComCount(){
+        return 5;//hardcoded for now
     }
 
     void drawRoom(){
