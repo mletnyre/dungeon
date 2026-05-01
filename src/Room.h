@@ -47,6 +47,11 @@ class Room{
         }
         placeDoors();
         carveRoom();
+        placeComs();
+    }
+
+    void placeComs(){
+        
     }
 
     void drawRoom(){
