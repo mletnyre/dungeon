@@ -158,7 +158,7 @@ class Game{
             CurRoom = &room;
         }
     }
-
+    
     bool isRunning = true;
     int ROOM_HEIGHT;
     int ROOM_WIDTH;
