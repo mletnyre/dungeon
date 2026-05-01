@@ -47,11 +47,17 @@ class Room{
         }
         placeDoors();
         carveRoom();
-        placeComs();
+        generateComs();
     }
 
-    void placeComs(){
-        
+    void generateComs(){
+        //for now each room will have 5 coms in it
+        for(int i = 0; i < 5; i ++){
+            int ranY = i+5;
+            int ranX = i+5; //hardcoded for now
+            Com* c = new Com(getWorld_x(), getWorld_y(), ranY, ranX);
+            coms.push_back(*c);
+        }
     }
 
     void drawRoom(){

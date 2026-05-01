@@ -43,6 +43,7 @@ class Game{
     }
 
     void checkFight(Character c){
+        //assumes that the characters have been moved
 
     }
 
@@ -55,13 +56,14 @@ class Game{
         std::vector<Com> coms = CurRoom->getComs();
         for(j = 0; j < CurRoom->getYDim(); j++){
             for(i = 0; i < CurRoom->getXDim(); i++){
-
+                bool comRender = false;
                 //if this is a com or the character then draw that rather than the room char
                 for(const Com& c: coms){
                     int x = c->getRoom_x();
                     int y = c->getRoom_y();
                     if(x == i && y == j){
                         std::cout<<c->getSymbol();
+                        comRender = true;
                         continue;
                     }
                 }
@@ -69,7 +71,9 @@ class Game{
                     std::cout<<player->getSymbol();
                     continue;
                 }
-                std::cout<<CurRoom->getRoomMap(j, i);
+                if(!comRender){
+                    std::cout<<CurRoom->getRoomMap(j, i);
+                }
             }
                 std::cout << "\n";
         }
