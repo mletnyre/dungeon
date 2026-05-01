@@ -20,10 +20,10 @@ class Game{
 
         player = new Player(CurRoom->getWorld_x(), CurRoom->getWorld_y(), CurRoom->getXDim() / 2, CurRoom->getYDim() / 2);
         ShowStartScreen(); 
+        renderScene();
     }
     
     void run(){
-        char inp;
         while(this->isRunning){
             startPlayersTurn();
             renderScene();
@@ -51,8 +51,28 @@ class Game{
         //find player position
         //display "hud" information
         drawHud();
-        CurRoom->drawRoom();
-        player->drawPlayer(); 
+        int i, j;
+        std::vector<Com> coms = CurRoom->getComs();
+        for(j = 0; j < CurRoom->getYDim(); j++){
+            for(i = 0; i < CurRoom->getXDim(); i++){
+
+                //if this is a com or the character then draw that rather than the room char
+                for(const Com& c: coms){
+                    int x = c->getRoom_x();
+                    int y = c->getRoom_y();
+                    if(x == i && y == j){
+                        std::cout<<c->getSymbol();
+                        continue;
+                    }
+                }
+                if(player->getRoom_x() == i && player->getRoom_y() == j){
+                    std::cout<<player->getSymbol();
+                    continue;
+                }
+                std::cout<<CurRoom->getRoomMap(j, i);
+            }
+                std::cout << "\n";
+        }
     }
 
     void drawHud(){
@@ -96,6 +116,18 @@ class Game{
         else if(inp == 'i'){
             std::cout<<"Moving up\n";
             newWorldY = world_y - 1;
+        }
+        else if(inp == 'w'){
+            player->setRoom_y(player->getRoom_y() - 1);
+        }
+        else if(inp == 'a'){
+            player->setRoom_x(player->getRoom_x() - 1);
+        }
+        else if(inp == 's'){
+            player->setRoom_y(player->getRoom_y() + 1);
+        }
+        else if(inp == 'd'){
+            player->setRoom_x(player->getRoom_x() + 1); 
         }
         else{
             std::cout<<"Im not sure what to do with this input: \n" << inp;
