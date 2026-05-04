@@ -101,6 +101,9 @@ class Room{
     }
 
     void placeDoors(){
+        //we need to see if rooms connected to this room have been generated yet, if they are match the doors up
+
+
         //pick a random spot for each door on all 4 sides
         
         int nDoor = (rand() % x_dim -1) + 1;

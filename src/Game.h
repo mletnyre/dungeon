@@ -26,7 +26,7 @@ class Game{
         while(this->isRunning){
             renderScene();
             PlayerTurn();
-            moveComs();
+            comsTurn();
         }
     }
 
@@ -37,12 +37,35 @@ class Game{
 
     private:
     
-    void moveComs(){
+    void comsTurn(){
         std::vector<Com> coms = CurRoom->getComs();
         for(Com c: coms){
-            //pick a random dir to move
+            moveCom(c);
             checkFight(c);
         }
+    }
+
+    void moveCom(Com& c){
+        int x, y;
+        //random direction
+        int randChoice = rand() % 4;
+        if(randChoice == 0){
+            x = 1; y = 0;
+        }
+        else if(randChoice == 1){
+            x = -1; y = 0;
+        }
+        else if(randChoice == 2){
+            x = 0; y = 1;
+        }
+        else if(randChoice == 3){
+            x = 0; y = -1;
+        }
+        int curx = c.getRoom_x();
+        int cury = c.getRoom_y();
+        c.setRoom_x(curx +=x );
+        c.setRoom_y(cury +=y);
+
     }
 
     void checkFight(Character c){
